@@ -80,5 +80,20 @@ public class TicketManagerTest {
         Ticket[] actual = manager.searchBy("VKO", "SVO");
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void removeByIdTest() {
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+        manager.add(item6);
+        repo.removeById(item2.getId());
 
+        Ticket[] expected = {item1, item3, item4, item5, item6};
+
+        Ticket[] actual = repo.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
